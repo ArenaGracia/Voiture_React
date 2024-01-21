@@ -57,7 +57,7 @@ function Energie(){
                   onChange={handleIntitule}
                 />
               </FormGroup>
-              <Button onClick={saveEnergie} className="btn btn-success">Submit</Button>
+              <Button onClick={saveEnergie} color="primary">Valider</Button>
             </Form>
           </CardBody>
         </Card>
