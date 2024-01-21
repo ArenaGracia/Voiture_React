@@ -13,32 +13,32 @@ import {
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getEnergie, updateEnergie } from "../../../services/EnergieService";
+import { getCategorie, updateCategorie } from "../../../services/CategorieService";
 import { useParams } from "react-router-dom/dist";
   
-function EditEnergie(){
+function EditCategorie(){
     const { id } =useParams()
-    const [energyDetails, setEnergieDetails] = useState({ idEnergie: '', intitule: '', etat:'' });
+    const [categorieDetails, setCategorieDetails] = useState({ idCategorie: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-      getEnergie(id).then((response) => {
-        setEnergieDetails(response.data);
+      getCategorie(id).then((response) => {
+        setCategorieDetails(response.data);
         console.log(response.data);
-        console.log(energyDetails);
+        console.log(categorieDetails);
       }).catch(error => {
         console.error(error);
       })
     },[id]);
 
-    function modifEnergie(e){
+    function modifCategorie(e){
         e.preventDefault();
-        updateEnergie(energyDetails);
+        updateCategorie(categorieDetails);
         setRedirect(true);
       }
   
     function handleIntitule(e){
-        setEnergieDetails((prevDetails) => ({
+        setCategorieDetails((prevDetails) => ({
           ...prevDetails,
           intitule: e.target.value,
         }));
@@ -50,30 +50,30 @@ function EditEnergie(){
           <Card>
             <CardTitle tag="h6" className="border-bottom p-3 mb-0">
               <i className="bi bi-bell me-2"> </i>
-              Ajouter une énergie
+              Modification
             </CardTitle>
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Energie</Label>
+                  <Label for="exampleEmail">Catégorie</Label>
                   <Input
                     id="exampleEmail"
-                    name="energie"
-                    placeholder="Energie"
+                    name="Categorie"
+                    placeholder="Categorie"
                     type="text"
-                    value={energyDetails.intitule}
+                    value={categorieDetails.intitule}
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifEnergie} className="btn btn-success">Submit</Button>
+                <Button onClick={modifCategorie} color="primary">Modifer</Button>
               </Form>
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/energie" />}
+        { redirect && <Navigate to="/Categorie" />}
       </Row>
     );
   };
   
-  export default EditEnergie;
+export default EditCategorie;
   

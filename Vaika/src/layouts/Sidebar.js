@@ -23,11 +23,6 @@ const navigation = [
     href: "/table",
     icon: "bi bi-layout-split",
   },
-  {
-    title: "Forms",
-    href: "/forms",
-    icon: "bi bi-textarea-resize",
-  },
 ];
 
 const Sidebar = () => {
