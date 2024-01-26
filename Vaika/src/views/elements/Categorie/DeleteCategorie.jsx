@@ -21,7 +21,7 @@ function DeleteCategorie() {
 
   return (
     <>
-      {redirect && <Navigate to="/Categorie" />}
+      {redirect && <Navigate to="/categorie" />}
     </>
   );
 }

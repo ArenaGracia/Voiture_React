@@ -7,24 +7,26 @@ const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
 /***** Pages ****/
 
 const Starter = lazy(() => import("../views/Starter.js"));
-const Cards = lazy(() => import("../views/ui/Cards"));
-const Grid = lazy(() => import("../views/ui/Grid"));
-const Tables = lazy(() => import("../views/ui/Tables"));
+const Tables = lazy(() => import("../views/ui/Tables.js"));
 const Energie = lazy(() => import("../views/elements/Energie/Energie"));
 const Categorie = lazy(() => import("../views/elements/Categorie/Categorie"));
 const Couleur = lazy(() => import("../views/elements/Couleur/Couleur"));
 const Modele = lazy(() => import("../views/elements/Modele/Modele"));
 const Marque = lazy(() => import("../views/elements/Marque/Marque"));
+const ModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/ModeleTransmission"));
 const EditEnergie = lazy(() => import("../views/elements/Energie/EditEnergie"));
 const EditCategorie = lazy(() => import("../views/elements/Categorie/EditCategorie"));
 const EditCouleur = lazy(() => import("../views/elements/Couleur/EditCouleur"));
 const EditModele = lazy(() => import("../views/elements/Modele/EditModele"));
 const EditMarque = lazy(() => import("../views/elements/Marque/EditMarque"));
+const EditModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/EditModeleTransmission"));
 const DeleteEnergie = lazy(() => import("../views/elements/Energie/DeleteEnergie"));
 const DeleteCategorie = lazy(() => import("../views/elements/Categorie/DeleteCategorie"));
 const DeleteCouleur = lazy(() => import("../views/elements/Couleur/DeleteCouleur"));
 const DeleteModele = lazy(() => import("../views/elements/Modele/DeleteModele"));
 const DeleteMarque = lazy(() => import("../views/elements/Marque/DeleteMarque"));
+const DeleteModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/DeleteModeleTransmission"));
+const Annonce = lazy(() => import("../views/Annonce/AnnonceValider"));
 
 /*****Routes******/
 
@@ -35,8 +37,7 @@ const ThemeRoutes = [
     children: [
       { path: "/", element: <Navigate to="/starter" /> },
       { path: "/starter", exact: true, element: <Starter /> },
-      { path: "/cards", exact: true, element: <Cards /> },
-      { path: "/grid", exact: true, element: <Grid /> },
+      { path: "/annonce", exact: true, element: <Annonce /> },
       { path: "/table", exact: true, element: <Tables /> },
       { path: "/energie", exact: true, element: <Energie /> },
       { path: "/energie/edit/:id", exact: true, element: <EditEnergie /> },
@@ -53,6 +54,11 @@ const ThemeRoutes = [
       { path: "/marque", exact: true, element: <Marque /> },
       { path: "/marque/edit/:id", exact: true, element: <EditMarque /> },
       { path: "/marque/delete/:id", exact: true, element: <DeleteMarque /> },
+      { path: "/modeleTransmission", exact: true, element: <ModeleTransmission /> },
+      { path: "/modeleTransmission/edit/:id", exact: true, element: <EditModeleTransmission /> },
+      { path: "/modeleTransmission/delete/:id", exact: true, element: <DeleteModeleTransmission /> },
+      { path: "/modeleTransmission/delete/:id", exact: true, element: <DeleteModeleTransmission /> },
+
     ],
   },
 ];

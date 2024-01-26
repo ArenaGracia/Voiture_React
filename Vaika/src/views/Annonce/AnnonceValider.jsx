@@ -9,71 +9,48 @@ import {
     Button,
     Row,
     Col,
+    Form,
+    CardSubtitle,
   } from "reactstrap";
-  import Blog from "../../components/dashboard/Blog";
-  import bg1 from "../../assets/images/bg/bg1.jpg";
-  import bg2 from "../../assets/images/bg/bg2.jpg";
-  import bg3 from "../../assets/images/bg/bg3.jpg";
-  import bg4 from "../../assets/images/bg/bg4.jpg";
+import { listAnnonceValider } from "../../services/AnnonceService";
+import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
   
-  const BlogData = [
-    {
-      image: bg1,
-      title: "This is simple blog",
-      subtitle: "2 comments, 1 Like",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      btnbg: "primary",
-    },
-    {
-      image: bg2,
-      title: "Lets be simple blog",
-      subtitle: "2 comments, 1 Like",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      btnbg: "primary",
-    },
-    {
-      image: bg3,
-      title: "Don't Lamp blog",
-      subtitle: "2 comments, 1 Like",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      btnbg: "primary",
-    },
-    {
-      image: bg4,
-      title: "Simple is beautiful",
-      subtitle: "2 comments, 1 Like",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      btnbg: "primary",
-    },
-  
-    {
-      image: bg4,
-      title: "Simple is beautiful",
-      subtitle: "2 comments, 1 Like",
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      btnbg: "primary",
-    },
-  ];
-  
-  const AnnonceValider = () => {
+function AnnonceValider(){
+    const [annonces,setAnnonceValider] = useState([])
+    const navigate=useNavigate();
+
+    function validerAnnonce(e,annonceId){
+      e.preventDefault();
+      const aller = () =>{
+        navigate(`/annonce/valider/${annonceId}`)
+      }
+      aller();
+    }
+
+    useEffect(() => {
+      listAnnonceValider().then((response) => {
+      setAnnonceValider(response.data);
+      }).catch(error => {
+      console.error(error);
+      })
+  }, [])
+
     return (
       <div>
         <h5 className="mb-3">Liste des annonces à valider</h5>
         <Row>
-          {BlogData.map((blg, index) => (
+          {annonces.map((annonce, index) => (
             <Col sm="6" lg="6" xl="4" key={index}>
-              <Blog
-                image={blg.image}
-                title={blg.title}
-                subtitle={blg.subtitle}
-                text={blg.description}
-                color={blg.btnbg}
-              />
+              <Card>
+                  <CardImg alt="Card image cap" src={`/images/${annonce.voiture.images[0]}`} />
+                  <CardBody className="p-4">
+                    <CardTitle tag="h5">{annonce.description}</CardTitle>
+                    <CardSubtitle>{annonce.prix}</CardSubtitle>
+                    <CardText className="mt-3">{annonce.voiture.modele}</CardText>
+                    <Button color="success" onClick={(e) => validerAnnonce(e, annonce.idAnnonce)}>Valider</Button>
+                  </CardBody>
+            </Card>
             </Col>
           ))}
         </Row>

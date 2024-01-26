@@ -70,7 +70,7 @@ function EditCouleur(){
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/Couleur" />}
+        { redirect && <Navigate to="/couleur" />}
       </Row>
     );
   };

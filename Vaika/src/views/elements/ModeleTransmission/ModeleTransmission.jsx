@@ -13,21 +13,21 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { createModele, listModeles } from "../../../services/ModeleService";
+import { createModeleTransmission, listModeleTransmissions } from "../../../services/ModeleTransmissionService";
 
-function Modele(){
+function ModeleTransmission(){
 const [intitule,setIntitule] = useState('')
-const [modeles,setModeles] = useState([])
+const [modeleTransmissions,setModeleTransmissions] = useState([])
 
-function saveModele(e){
+function saveModeleTransmission(e){
     e.preventDefault();
-    const modele={intitule}
-    createModele(modele);
+    const modeleTransmission={intitule}
+    createModeleTransmission(modeleTransmission);
 }
 
 useEffect(() => {
-    listModeles().then((response) => {
-    setModeles(response.data);
+    listModeleTransmissions().then((response) => {
+    setModeleTransmissions(response.data);
     }).catch(error => {
     console.error(error);
     })
@@ -48,16 +48,16 @@ return (
         <CardBody>
             <Form>
             <FormGroup>
-                <Label for="exampleEmail">Modele</Label>
+                <Label for="exampleEmail">ModeleTransmission</Label>
                 <Input
                 id="exampleEmail"
-                name="modele"
-                placeholder="Modele"
+                name="modeleTransmission"
+                placeholder="ModeleTransmission"
                 type="text"
                 onChange={handleIntitule}
                 />
             </FormGroup>
-            <Button onClick={saveModele} color="primary">Valider</Button>
+            <Button onClick={saveModeleTransmission} color="primary">Valider</Button>
             </Form>
         </CardBody>
         </Card>
@@ -71,19 +71,19 @@ return (
             <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <tbody>
                     {
-                        modeles.map(modele => 
-                            <tr key={modele.idModele} className="border-top">
+                        modeleTransmissions.map(modeleTransmission => 
+                            <tr key={modeleTransmission.idModeleTransmission} className="border-top">
                             
                             <td>
                                 <div className="d-flex align-items-center p-2">
                                 <div className="ms-3">    
-                                    {modele.intitule}
+                                    {modeleTransmission.intitule}
                                 </div>
                                 </div>
                             </td>
                             
-                            <td><Link to={`/modele/edit/${Modele.idModele}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
-                            <td><Link to={`/modele/delete/${Modele.idModele}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
+                            <td><Link to={`/modeleTransmission/edit/${modeleTransmission.idModeleTransmission}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
+                            <td><Link to={`/modeleTransmission/delete/${modeleTransmission.idModeleTransmission}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
                             </tr>
                         )
                     }
@@ -96,4 +96,4 @@ return (
 );
 };
 
-export default Modele;
+export default ModeleTransmission;
