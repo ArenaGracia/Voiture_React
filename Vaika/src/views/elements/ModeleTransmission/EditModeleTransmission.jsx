@@ -13,32 +13,32 @@ import {
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getMarque, updateMarque } from "../../../services/MarqueService";
+import { getModeleTransmission, updateModeleTransmission } from "../../../services/ModeleTransmissionService";
 import { useParams } from "react-router-dom/dist";
   
-function EditMarque(){
+function EditModeleTransmission(){
     const { id } =useParams()
-    const [marqueDetails, setMarqueDetails] = useState({ idMarque: '', intitule: '', etat:'' });
+    const [modeleTransmissionDetails, setModeleTransmissionDetails] = useState({ idModeleTransmission: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-      getMarque(id).then((response) => {
-        setMarqueDetails(response.data);
+      getModeleTransmission(id).then((response) => {
+        setModeleTransmissionDetails(response.data);
         console.log(response.data);
-        console.log(marqueDetails);
+        console.log(modeleTransmissionDetails);
       }).catch(error => {
         console.error(error);
       })
     },[id]);
 
-    function modifMarque(e){
+    function modifModeleTransmission(e){
         e.preventDefault();
-        updateMarque(marqueDetails);
+        updateModeleTransmission(modeleTransmissionDetails);
         setRedirect(true);
       }
   
     function handleIntitule(e){
-        setMarqueDetails((prevDetails) => ({
+        setModeleTransmissionDetails((prevDetails) => ({
           ...prevDetails,
           intitule: e.target.value,
         }));
@@ -55,25 +55,25 @@ function EditMarque(){
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Marque</Label>
+                  <Label for="exampleEmail">Modèle</Label>
                   <Input
                     id="exampleEmail"
-                    name="Marque"
-                    placeholder="Marque"
+                    name="ModeleTransmission"
+                    placeholder="ModeleTransmission"
                     type="text"
-                    value={marqueDetails.intitule}
+                    value={modeleTransmissionDetails.intitule}
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifMarque} color="primary">Modifer</Button>
+                <Button onClick={modifModeleTransmission} color="primary">Modifer</Button>
               </Form>
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/marque" />}
+        { redirect && <Navigate to="/modeleTransmission" />}
       </Row>
     );
   };
   
-export default EditMarque;
+export default EditModeleTransmission;
   

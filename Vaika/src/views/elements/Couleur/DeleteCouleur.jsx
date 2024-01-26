@@ -21,7 +21,7 @@ function DeleteCouleur() {
 
   return (
     <>
-      {redirect && <Navigate to="/Couleur" />}
+      {redirect && <Navigate to="/couleur" />}
     </>
   );
 }

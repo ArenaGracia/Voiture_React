@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { deleteModele } from '../../../services/ModeleService';
+import { validerAnnonce } from '../../../services/AnnonceService';
 
-function DeleteModele() {
+function validerAnnonce() {
   const { id } = useParams();
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    const fetchDataAndDelete = async () => {
+    const fetchDataAndvaliderAnnonce = async () => {
       try {
-        await deleteModele(id);
+        await validerAnnonce(id);
         setRedirect(true);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchDataAndDelete();
+    fetchDataAndvaliderAnnonce();
   }, [id]); 
 
   return (
     <>
-      {redirect && <Navigate to="/Modele" />}
+      {redirect && <Navigate to="/marque" />}
     </>
   );
 }
 
-export default DeleteModele;
+export default validerAnnonce;

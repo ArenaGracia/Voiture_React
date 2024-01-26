@@ -21,7 +21,7 @@ function DeleteMarque() {
 
   return (
     <>
-      {redirect && <Navigate to="/Marque" />}
+      {redirect && <Navigate to="/marque" />}
     </>
   );
 }

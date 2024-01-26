@@ -70,7 +70,7 @@ function EditCategorie(){
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/Categorie" />}
+        { redirect && <Navigate to="/categorie" />}
       </Row>
     );
   };

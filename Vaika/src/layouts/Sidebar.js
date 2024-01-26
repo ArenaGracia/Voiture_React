@@ -9,17 +9,12 @@ const navigation = [
     icon: "bi bi-speedometer2",
   },
   {
-    title: "Cards",
-    href: "/cards",
+    title: "Annonce",
+    href: "/annonce",
     icon: "bi bi-card-text",
   },
   {
-    title: "Grid",
-    href: "/grid",
-    icon: "bi bi-columns",
-  },
-  {
-    title: "Table",
+    title: "Eléments",
     href: "/table",
     icon: "bi bi-layout-split",
   },

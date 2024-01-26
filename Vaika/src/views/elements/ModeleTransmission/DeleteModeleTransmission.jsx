@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { deleteModele } from '../../../services/ModeleService';
+import { deleteModeleTransmission } from '../../../services/ModeleTransmissionService';
 
-function DeleteModele() {
+function DeleteModeleTransmission() {
   const { id } = useParams();
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
     const fetchDataAndDelete = async () => {
       try {
-        await deleteModele(id);
+        await deleteModeleTransmission(id);
         setRedirect(true);
       } catch (error) {
         console.error(error);
@@ -21,9 +21,9 @@ function DeleteModele() {
 
   return (
     <>
-      {redirect && <Navigate to="/Modele" />}
+      {redirect && <Navigate to="/modeleTransmission" />}
     </>
   );
 }
 
-export default DeleteModele;
+export default DeleteModeleTransmission;
