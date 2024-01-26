@@ -6,8 +6,8 @@ const elements = [
     href: "/categorie"
   },
   {
-    nom: "Modèle",
-    href: "/modele"
+    nom: "Transmission",
+    href: "/modeletransmission"
   },
   {
     nom: "Energie",
