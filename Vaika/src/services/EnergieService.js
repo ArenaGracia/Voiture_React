@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REST_API_BASE_URL='http://localhost:1970/api/voiture/';
+const REST_API_BASE_URL='http://voiture-production-524c.up.railway.app/api/voiture/';
 
 export const listEnergies = () =>  axios.get(REST_API_BASE_URL+"energies");
 export const createEnergie = (energie) => axios.post(REST_API_BASE_URL+"energie",energie);

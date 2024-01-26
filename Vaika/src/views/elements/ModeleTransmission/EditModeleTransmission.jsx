@@ -9,7 +9,6 @@ import {
     FormGroup,
     Label,
     Input,
-    Table,
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
@@ -29,7 +28,7 @@ function EditModeleTransmission(){
       }).catch(error => {
         console.error(error);
       })
-    },[id]);
+    },[id, modeleTransmissionDetails]);
 
     function modifModeleTransmission(e){
         e.preventDefault();

@@ -9,7 +9,6 @@ import {
     FormGroup,
     Label,
     Input,
-    Table,
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
@@ -29,7 +28,7 @@ function EditModele(){
       }).catch(error => {
         console.error(error);
       })
-    },[id]);
+    },[id, modeleDetails]);
 
     function modifModele(e){
         e.preventDefault();
