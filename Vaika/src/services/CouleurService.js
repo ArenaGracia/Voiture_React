@@ -1,9 +1,40 @@
 import axios from "axios";
+import { getAuthToken } from "./AuthService";
 
-const REST_API_BASE_URL='http://localhost:1970/api/voiture/';
+const REST_API_BASE_URL='https://voiture-production-524c.up.railway.app/api/voiture/';
 
-export const listCouleurs = () =>  axios.get(REST_API_BASE_URL+"couleurs");
-export const createCouleur = (couleur) => axios.post(REST_API_BASE_URL+"couleur",couleur);
-export const getCouleur = (idCouleur) => axios.get(REST_API_BASE_URL+"couleur/"+idCouleur) ;
-export const updateCouleur = (couleur) => axios.put(REST_API_BASE_URL+"couleur",couleur);
-export const deleteCouleur = (idCouleur) => axios.delete(REST_API_BASE_URL+"couleur/"+idCouleur);
+let token=getAuthToken();
+console.log(token)
+
+
+export const listCouleurs = () =>  
+    axios.get(
+        REST_API_BASE_URL+"couleurs",
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const createCouleur = (couleur) => 
+    axios.post(
+        REST_API_BASE_URL+"couleur",
+        couleur,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const getCouleur = (idcouleur) => 
+    axios.get(
+        REST_API_BASE_URL+"couleur/"+idcouleur,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+) ;
+
+export const updateCouleur = (couleur) => 
+    axios.put(
+        REST_API_BASE_URL+"couleur",
+        couleur,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const deleteCouleur = (idcouleur) => 
+    axios.delete(
+        REST_API_BASE_URL+"couleur/"+idcouleur,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);

@@ -10,19 +10,14 @@ import {
     CardSubtitle,
   } from "reactstrap";
 import { listAnnonceValider } from "../../services/AnnonceService";
-import { useNavigate } from "react-router-dom";
 import { useState,useEffect } from "react";
   
 function AnnonceValider(){
     const [annonces,setAnnonceValider] = useState([])
-    const navigate=useNavigate();
 
     function validerAnnonce(e,annonceId){
       e.preventDefault();
-      const aller = () =>{
-        navigate(`/annonce/valider/${annonceId}`)
-      }
-      aller();
+      
     }
 
     useEffect(() => {

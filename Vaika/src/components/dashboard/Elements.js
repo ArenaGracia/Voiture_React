@@ -7,7 +7,7 @@ const elements = [
   },
   {
     nom: "Transmission",
-    href: "/modeletransmission"
+    href: "/modetransmission"
   },
   {
     nom: "Energie",
@@ -20,6 +20,10 @@ const elements = [
   {
     nom: "Couleur",
     href: "/couleur"
+  },
+  {
+    nom: "Specification",
+    href: "/specification"
   }
 ];
 

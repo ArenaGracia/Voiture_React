@@ -16,19 +16,23 @@ import { getCouleur, updateCouleur } from "../../../services/CouleurService";
 import { useParams } from "react-router-dom/dist";
   
 function EditCouleur(){
-    const { id } =useParams()
+    const { id } =useParams();
+    const [load, setLoad] = useState(false);
     const [couleurDetails, setCouleurDetails] = useState({ idCouleur: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-      getCouleur(id).then((response) => {
-        setCouleurDetails(response.data);
-        console.log(response.data);
-        console.log(couleurDetails);
-      }).catch(error => {
-        console.error(error);
-      })
-    },[couleurDetails, id]);
+      if(!load){
+        getCouleur(id).then((response) => {
+          setCouleurDetails(response.data);
+          setLoad(true);
+          console.log(response.data);
+          console.log(couleurDetails);
+        }).catch(error => {
+          console.error(error);
+        })
+      }
+    });
 
     function modifCouleur(e){
         e.preventDefault();
@@ -64,7 +68,7 @@ function EditCouleur(){
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifCouleur} color="primary">Modifer</Button>
+                <Button onClick={modifCouleur} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
               </Form>
             </CardBody>
           </Card>

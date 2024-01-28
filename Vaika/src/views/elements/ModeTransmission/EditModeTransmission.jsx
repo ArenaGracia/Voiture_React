@@ -12,32 +12,36 @@ import {
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getModeleTransmission, updateModeleTransmission } from "../../../services/ModeleTransmissionService";
+import { getModeTransmission, updateModeTransmission } from "../../../services/ModeTransmissionService";
 import { useParams } from "react-router-dom/dist";
   
-function EditModeleTransmission(){
-    const { id } =useParams()
-    const [modeleTransmissionDetails, setModeleTransmissionDetails] = useState({ idModeleTransmission: '', intitule: '', etat:'' });
+function EditModeTransmission(){
+    const { id } =useParams();
+    const [load, setLoad] = useState(false);
+    const [modeTransmissionDetails, setModeTransmissionDetails] = useState({ idModeTransmission: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-      getModeleTransmission(id).then((response) => {
-        setModeleTransmissionDetails(response.data);
-        console.log(response.data);
-        console.log(modeleTransmissionDetails);
-      }).catch(error => {
-        console.error(error);
-      })
-    },[id, modeleTransmissionDetails]);
+      if(!load){
+        getModeTransmission(id).then((response) => {
+          setModeTransmissionDetails(response.data);
+          setLoad(true);
+          console.log(response.data);
+          console.log(modeTransmissionDetails);
+        }).catch(error => {
+          console.error(error);
+        })
+      }
+    });
 
-    function modifModeleTransmission(e){
+    function modifModeTransmission(e){
         e.preventDefault();
-        updateModeleTransmission(modeleTransmissionDetails);
+        updateModeTransmission(modeTransmissionDetails);
         setRedirect(true);
       }
   
     function handleIntitule(e){
-        setModeleTransmissionDetails((prevDetails) => ({
+        setModeTransmissionDetails((prevDetails) => ({
           ...prevDetails,
           intitule: e.target.value,
         }));
@@ -57,22 +61,22 @@ function EditModeleTransmission(){
                   <Label for="exampleEmail">Modèle</Label>
                   <Input
                     id="exampleEmail"
-                    name="ModeleTransmission"
-                    placeholder="ModeleTransmission"
+                    name="ModeTransmission"
+                    placeholder="ModeTransmission"
                     type="text"
-                    value={modeleTransmissionDetails.intitule}
+                    value={modeTransmissionDetails.intitule}
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifModeleTransmission} color="primary">Modifer</Button>
+                <Button onClick={modifModeTransmission} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
               </Form>
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/modeleTransmission" />}
+        { redirect && <Navigate to="/modeTransmission" />}
       </Row>
     );
   };
   
-export default EditModeleTransmission;
+export default EditModeTransmission;
   

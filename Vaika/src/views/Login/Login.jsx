@@ -1,66 +1,60 @@
-import '../../assets/scss/login.css'
-import voiture from "../../assets/images/bg/bg4.jpg";
+import voiture from "../../assets/images/bg/voiture.jpg";
 import { Button } from 'reactstrap';
-import { useState } from 'react';
-import { login } from '../../services/AuthService';
-import { Navigate } from 'react-router-dom';
-
-
+import { useEffect, useState } from 'react';
+import { isAuthenticated, login } from '../../services/AuthService';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [mdp,setPassword]=useState('');
-    const [email,setEmail]=useState('');
+    const [mdp,setMdp]=useState('motdepasse');
+    const [username,setUsername]=useState('john_doe');
     const [redirect,setRedirect]=useState(false);
+    const nav=useNavigate();
 
     function authentifier(e){
         e.preventDefault();
-        const admin={email,mdp};
-        console.log(admin);
-        setPassword('');
-        setEmail('');
-        login(admin).then((response) => {
-            console.log(response.data);
-            sessionStorage.setItem('token',response.data);
+        const vprofil={username,mdp};
+
+        console.log(vprofil);
+        login(vprofil).then((response) => {
+            sessionStorage.setItem('token',response.data['access-token']);
             setRedirect(true);
         }).catch(error => {
             console.error(error.message);
         })
     }
 
-    function handleEmail(e){
-        setEmail(e.target.value);
-    }
-    
-    function handlePassword(e){
-        setPassword(e.target.value);
-    }
+    useEffect(() => {
+        if(isAuthenticated()){
+            nav("/table");
+        }
+    });
 
     return (
         <div>
-        <section class="ftco-section">
-            <div class="container">
+        <section className="ftco-section">
+            <div className="container">
 
-                <div class="row justify-content-center">
-                    <div class="col-md-12 col-lg-10">
-                        <div class="wrap d-md-flex">
-                            <div class="img" style={{backgroundImage: `url(${voiture})`}}></div>
-                            <div class="login-wrap p-4 p-md-5">
-                                <div class="d-flex">
-                                    <div class="w-100">
-                                        <h3 class="mb-4">Sign In</h3>
+                <div className="row justify-content-center">
+                    <div className="col-md-12 col-lg-10">
+                        <div className="wrap d-md-flex">
+                            <div className="img" style={{backgroundImage: `url(${voiture})`}}></div>
+                            <div className="login-wrap p-4 p-md-5">
+                                <div className="d-flex">
+                                    <div className="w-100">
+                                        <h3 className="mb-4">Se Connecter</h3>
                                     </div>
                                 </div>
-                                <form action="#" class="signin-form">
-                                    <div class="form-group mb-3">
-                                        <label class="label" for="password">Email</label>
-                                        <input type="email" class="form-control" placeholder="Email" onChange={handleEmail} required />
+                                <form action="#" className="signin-form">
+                                    <div className="form-group mb-3">
+                                        <label className="label" for="password">Nom d'utilisateur</label>
+                                        <input type="Username" className="form-control" placeholder="Utilisateur" value={username} onChange={e => setUsername(e.target.value)} required />
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <label class="label" for="password">Password</label>
-                                        <input type="password" class="form-control" placeholder="Password" onChange={handlePassword} required />
+                                    <div className="form-group mb-3">
+                                        <label className="label" for="password">Mot de passe</label>
+                                        <input type="password" className="form-control" placeholder="Mot de passe" value={mdp} onChange={e => setMdp(e.target.value)} required />
                                     </div>
-                                    <div class="form-group">
-                                        <Button onClick={authentifier} className="form-control btn btn-primary">Sign In</Button>
+                                    <div className="form-group">
+                                        <Button onClick={authentifier} className="form-control" style={{backgroundColor:'#2962ff',color:'white'}}> Se Connecter</Button>
                                     </div>
                                 </form>
                             </div>
@@ -69,7 +63,7 @@ function Login() {
                 </div>
             </div>
         </section>
-        { redirect && <Navigate to="/energie" />}
+        { redirect && window.location.reload() }
         </div>
     );
 

@@ -16,19 +16,23 @@ import { getMarque, updateMarque } from "../../../services/MarqueService";
 import { useParams } from "react-router-dom/dist";
   
 function EditMarque(){
-    const { id } =useParams()
+    const { id } =useParams();
+    const [load, setLoad] = useState(false);
     const [marqueDetails, setMarqueDetails] = useState({ idMarque: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
-      getMarque(id).then((response) => {
-        setMarqueDetails(response.data);
-        console.log(response.data);
-        console.log(marqueDetails);
-      }).catch(error => {
-        console.error(error);
-      })
-    },[id, marqueDetails]);
+      if(!load){
+        getMarque(id).then((response) => {
+          setMarqueDetails(response.data);
+          setLoad(true);
+          console.log(response.data);
+          console.log(marqueDetails);
+        }).catch(error => {
+          console.error(error);
+        })
+      }
+    });
 
     function modifMarque(e){
         e.preventDefault();
@@ -64,7 +68,7 @@ function EditMarque(){
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifMarque} color="primary">Modifer</Button>
+                <Button onClick={modifMarque} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
               </Form>
             </CardBody>
           </Card>

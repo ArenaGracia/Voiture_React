@@ -13,25 +13,25 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { createCouleur, listCouleurs } from "../../../services/CouleurService";
+import { createModeTransmission, listModeTransmissions } from "../../../services/ModeTransmissionService";
 
-function Couleur(){
+function ModeTransmission(){
 const [intitule,setIntitule] = useState('')
-const [couleurs,setCouleurs] = useState([])
+const [modeTransmissions,setModeTransmissions] = useState([])
 
-function saveCouleur(e){
+function saveModeTransmission(e){
     e.preventDefault();
-    const couleur={intitule}
-    createCouleur(couleur).then((response)=>{
-      setCouleurs([...couleurs,response.data]);
+    const ModeTransmission={intitule}
+    createModeTransmission(ModeTransmission).then((response)=>{
+      setModeTransmissions([...modeTransmissions,response.data]);
     }).catch(error => {
       console.log(error);
     });
-}
+  }
 
 useEffect(() => {
-    listCouleurs().then((response) => {
-    setCouleurs(response.data);
+    listModeTransmissions().then((response) => {
+    setModeTransmissions(response.data);
     }).catch(error => {
     console.error(error);
     })
@@ -47,21 +47,21 @@ return (
         <Card>
         <CardTitle tag="h6" className="border-bottom p-3 mb-0">
             <i className="bi bi-bell me-2"> </i>
-            Ajouter une couleur
+            Ajouter un modèle
         </CardTitle>
         <CardBody>
             <Form>
             <FormGroup>
-                <Label for="exampleEmail">Couleur</Label>
+                <Label for="exampleEmail">ModeTransmission</Label>
                 <Input
                 id="exampleEmail"
-                name="Couleur"
-                placeholder="Couleur"
+                name="modeTransmission"
+                placeholder="ModeTransmission"
                 type="text"
                 onChange={handleIntitule}
                 />
             </FormGroup>
-            <Button onClick={saveCouleur} style={{backgroundColor:'blue', borderColor:'blue'}}>Valider</Button>
+            <Button onClick={saveModeTransmission} style={{backgroundColor:'blue', borderColor:'blue'}}>Valider</Button>
             </Form>
         </CardBody>
         </Card>
@@ -69,24 +69,25 @@ return (
         <CardBody>
             <CardTitle tag="h6" className="border-bottom p-3 mb-0">
             <i className="bi bi-list me-2"> </i>
-            Liste des couleurs
+            Liste des modèles
             </CardTitle>
 
             <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <tbody>
                     {
-                        couleurs.map(couleur => 
-                            <tr key={couleur.idCouleur} className="border-top">
+                        modeTransmissions.map(modeTransmission => 
+                            <tr key={modeTransmission.idModeTransmission} className="border-top">
                             
                             <td>
                                 <div className="d-flex align-items-center p-2">
                                 <div className="ms-3">    
-                                    {couleur.intitule}
+                                    {modeTransmission.intitule}
                                 </div>
                                 </div>
                             </td>
-                            <td><Link to={`/couleur/edit/${couleur.idCouleur}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
-                            <td><Link to={`/couleur/delete/${couleur.idCouleur}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
+                            
+                            <td><Link to={`/modeTransmission/edit/${modeTransmission.idModeTransmission}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
+                            <td><Link to={`/modeTransmission/delete/${modeTransmission.idModeTransmission}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
                             </tr>
                         )
                     }
@@ -99,4 +100,4 @@ return (
 );
 };
 
-export default Couleur;
+export default ModeTransmission;

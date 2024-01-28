@@ -1,9 +1,40 @@
 import axios from "axios";
+import { getAuthToken } from "./AuthService";
 
-const REST_API_BASE_URL='http://localhost:1970/api/voiture/';
+const REST_API_BASE_URL='https://voiture-production-524c.up.railway.app/api/voiture/';
 
-export const listCategories = () =>  axios.get(REST_API_BASE_URL+"categories");
-export const createCategorie = (categorie) => axios.post(REST_API_BASE_URL+"categorie",categorie);
-export const getCategorie = (idCategorie) => axios.get(REST_API_BASE_URL+"categorie/"+idCategorie) ;
-export const updateCategorie = (categorie) => axios.put(REST_API_BASE_URL+"categorie",categorie);
-export const deleteCategorie = (idCategorie) => axios.delete(REST_API_BASE_URL+"categorie/"+idCategorie);
+let token=getAuthToken();
+console.log(token)
+
+
+export const listCategories = () =>  
+    axios.get(
+        REST_API_BASE_URL+"categories",
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const createCategorie = (categorie) => 
+    axios.post(
+        REST_API_BASE_URL+"categorie",
+        categorie,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const getCategorie = (idcategorie) => 
+    axios.get(
+        REST_API_BASE_URL+"categorie/"+idcategorie,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+) ;
+
+export const updateCategorie = (categorie) => 
+    axios.put(
+        REST_API_BASE_URL+"categorie",
+        categorie,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);
+
+export const deleteCategorie = (idcategorie) => 
+    axios.delete(
+        REST_API_BASE_URL+"categorie/"+idcategorie,
+        { headers: { 'Authorization':  `Bearer ${token} ` } }
+);

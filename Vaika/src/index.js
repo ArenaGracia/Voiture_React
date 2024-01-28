@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 // import ReactDOM from "react-dom";
 import {createRoot} from 'react-dom/client';
+import "./assets/scss/login.css";
 import "./assets/scss/style.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

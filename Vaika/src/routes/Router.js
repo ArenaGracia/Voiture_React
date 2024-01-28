@@ -1,29 +1,38 @@
-import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
 /****Layouts*****/
-const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
+import FullLayout from "../layouts/FullLayout.js";
+
+// route privées
+import PrivateRoute from "../routes/PrivateRoute.js";
 
 /***** Pages ****/
 
-const Login = lazy(() => import("../views/Login/Login"));
-const Tables = lazy(() => import("../views/ui/Tables.js"));
-const Energie = lazy(() => import("../views/elements/Energie/Energie"));
-const Categorie = lazy(() => import("../views/elements/Categorie/Categorie"));
-const Couleur = lazy(() => import("../views/elements/Couleur/Couleur"));
-const Marque = lazy(() => import("../views/elements/Marque/Marque"));
-const ModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/ModeleTransmission"));
-const EditEnergie = lazy(() => import("../views/elements/Energie/EditEnergie"));
-const EditCategorie = lazy(() => import("../views/elements/Categorie/EditCategorie"));
-const EditCouleur = lazy(() => import("../views/elements/Couleur/EditCouleur"));
-const EditMarque = lazy(() => import("../views/elements/Marque/EditMarque"));
-const EditModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/EditModeleTransmission"));
-const DeleteEnergie = lazy(() => import("../views/elements/Energie/DeleteEnergie"));
-const DeleteCategorie = lazy(() => import("../views/elements/Categorie/DeleteCategorie"));
-const DeleteCouleur = lazy(() => import("../views/elements/Couleur/DeleteCouleur"));
-const DeleteMarque = lazy(() => import("../views/elements/Marque/DeleteMarque"));
-const DeleteModeleTransmission = lazy(() => import("../views/elements/ModeleTransmission/DeleteModeleTransmission"));
-const Annonce = lazy(() => import("../views/Annonce/AnnonceValider"));
+import Login from "../views/Login/Login";
+import Logout from "../views/Login/Logout";
+import Tables from "../views/ui/Tables.js";
+import Energie from "../views/elements/Energie/Energie";
+import Categorie from "../views/elements/Categorie/Categorie";
+import Couleur from "../views/elements/Couleur/Couleur";
+import Marque from "../views/elements/Marque/Marque";
+import ModeTransmission from "../views/elements/ModeTransmission/ModeTransmission";
+import Specification from "../views/elements/Specification/Specification";
+import Comission from "../views/elements/Comission/Comission";
+import EditEnergie from "../views/elements/Energie/EditEnergie";
+import EditCategorie from "../views/elements/Categorie/EditCategorie";
+import EditCouleur from "../views/elements/Couleur/EditCouleur";
+import EditMarque from "../views/elements/Marque/EditMarque";
+import EditSpecification from "../views/elements/Specification/EditSpecification";
+import EditModeTransmission from "../views/elements/ModeTransmission/EditModeTransmission";
+import EditComission from "../views/elements/Comission/EditComission";
+import DeleteEnergie from "../views/elements/Energie/DeleteEnergie";
+import DeleteCategorie from "../views/elements/Categorie/DeleteCategorie";
+import DeleteCouleur from "../views/elements/Couleur/DeleteCouleur";
+import DeleteMarque from "../views/elements/Marque/DeleteMarque";
+import DeleteModeTransmission from "../views/elements/ModeTransmission/DeleteModeTransmission";
+import DeleteSpecification from "../views/elements/Specification/DeleteSpecification";
+import DeleteComission from "../views/elements/Comission/DeleteComission";
+import Annonce from "../views/Annonce/AnnonceValider";
 
 /*****Routes******/
 
@@ -32,27 +41,32 @@ const ThemeRoutes = [
     path: "/",
     element: <FullLayout />,
     children: [
-      { path: "/", element: <Navigate to="/Login" /> },
+      { path: "/", element: <Navigate to="/Tables" /> },
       { path: "/login", exact: true, element: <Login /> },
-      { path: "/annonce", exact: true, element: <Annonce /> },
-      { path: "/table", exact: true, element: <Tables /> },
-      { path: "/energie", exact: true, element: <Energie /> },
-      { path: "/energie/edit/:id", exact: true, element: <EditEnergie /> },
-      { path: "/energie/delete/:id", exact: true, element: <DeleteEnergie /> },
-      { path: "/categorie", exact: true, element: <Categorie /> },
-      { path: "/categorie/edit/:id", exact: true, element: <EditCategorie /> },
-      { path: "/categorie/delete/:id", exact: true, element: <DeleteCategorie /> },
-      { path: "/couleur", exact: true, element: <Couleur /> },
-      { path: "/couleur/edit/:id", exact: true, element: <EditCouleur /> },
-      { path: "/couleur/delete/:id", exact: true, element: <DeleteCouleur /> },
-      { path: "/marque", exact: true, element: <Marque /> },
-      { path: "/marque/edit/:id", exact: true, element: <EditMarque /> },
-      { path: "/marque/delete/:id", exact: true, element: <DeleteMarque /> },
-      { path: "/modeleTransmission", exact: true, element: <ModeleTransmission /> },
-      { path: "/modeleTransmission/edit/:id", exact: true, element: <EditModeleTransmission /> },
-      { path: "/modeleTransmission/delete/:id", exact: true, element: <DeleteModeleTransmission /> },
-      { path: "/modeleTransmission/delete/:id", exact: true, element: <DeleteModeleTransmission /> },
-
+      { path: "/logout", exact: true, element: <PrivateRoute><Logout /></PrivateRoute> },
+      { path: "/annonce", exact: true, element: <PrivateRoute> <Annonce /></PrivateRoute> },
+      { path: "/table", exact: true, element: <PrivateRoute><Tables /></PrivateRoute> },
+      { path: "/energie", exact: true, element: <PrivateRoute><Energie /></PrivateRoute> },
+      { path: "/energie/edit/:id", exact: true, element: <PrivateRoute><EditEnergie /></PrivateRoute> },
+      { path: "/energie/delete/:id", exact: true, element: <PrivateRoute><DeleteEnergie /></PrivateRoute> },
+      { path: "/categorie", exact: true, element: <PrivateRoute><Categorie /></PrivateRoute> },
+      { path: "/categorie/edit/:id", exact: true, element: <PrivateRoute><EditCategorie /></PrivateRoute> },
+      { path: "/categorie/delete/:id", exact: true, element: <PrivateRoute><DeleteCategorie /></PrivateRoute> },
+      { path: "/couleur", exact: true, element: <PrivateRoute><Couleur /></PrivateRoute> },
+      { path: "/couleur/edit/:id", exact: true, element: <PrivateRoute><EditCouleur /></PrivateRoute> },
+      { path: "/couleur/delete/:id", exact: true, element: <PrivateRoute><DeleteCouleur /></PrivateRoute> },
+      { path: "/marque", exact: true, element: <PrivateRoute><Marque /></PrivateRoute> },
+      { path: "/marque/edit/:id", exact: true, element: <PrivateRoute><EditMarque /></PrivateRoute> },
+      { path: "/marque/delete/:id", exact: true, element: <PrivateRoute><DeleteMarque /></PrivateRoute> },
+      { path: "/modeTransmission", exact: true, element: <PrivateRoute><ModeTransmission /></PrivateRoute> },
+      { path: "/modeTransmission/edit/:id", exact: true, element: <PrivateRoute><EditModeTransmission /></PrivateRoute> },
+      { path: "/modeTransmission/delete/:id", exact: true, element: <PrivateRoute><DeleteModeTransmission /></PrivateRoute> },
+      { path: "/specification", exact: true, element: <PrivateRoute><Specification /></PrivateRoute> },
+      { path: "/specification/edit/:id", exact: true, element: <PrivateRoute><EditSpecification /></PrivateRoute> },
+      { path: "/specification/delete/:id", exact: true, element: <PrivateRoute><DeleteSpecification /></PrivateRoute> },
+      { path: "/comission", exact: true, element: <PrivateRoute><Comission /></PrivateRoute> },
+      { path: "/comission/edit/:id", exact: true, element: <PrivateRoute><EditComission /></PrivateRoute> },
+      { path: "/comission/delete/:id", exact: true, element: <PrivateRoute><DeleteComission /></PrivateRoute> },
     ],
   },
 ];

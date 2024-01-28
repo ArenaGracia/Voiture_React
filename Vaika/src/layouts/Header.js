@@ -16,13 +16,13 @@ const Header = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   return (
-    <Navbar color="primary" dark expand="md">
+    <Navbar style={{backgroundColor:'blue', borderColor:'blue'}} dark expand="md">
       <div className="d-flex align-items-center">
         <NavbarBrand href="/" className="d-lg-none">
           <LogoWhite />
         </NavbarBrand>
         <Button
-          color="primary"
+          style={{backgroundColor:'blue', borderColor:'blue'}}
           className="d-lg-none"
           onClick={() => showMobilemenu()}
         >
@@ -31,7 +31,7 @@ const Header = () => {
       </div>
       <div className="hstack gap-2">
         <Button
-          color="primary"
+          style={{backgroundColor:'blue', borderColor:'blue'}}
           size="sm"
           className="d-sm-block d-md-none"
           onClick={Handletoggle}

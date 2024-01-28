@@ -7,12 +7,13 @@ const FullLayout = () => {
   return (
     <main>
       <div className="pageWrapper d-lg-flex">
-        <aside className="sidebarArea shadow" id="sidebarArea">
-          <Sidebar />
-        </aside>
-
+          <aside className="sidebarArea shadow" id="sidebarArea">
+            <Sidebar />
+          </aside>
+        
         <div className="contentArea">
           <Header />
+    
           <Container className="p-4 wrapper" fluid>
             <Outlet />
           </Container>

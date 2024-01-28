@@ -7,35 +7,34 @@ let token=getAuthToken();
 console.log(token)
 
 
-
-export const listMarques = () =>  
+export const listSpecifications = () =>  
     axios.get(
-        REST_API_BASE_URL+"marques",
+        REST_API_BASE_URL+"specifications",
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const createMarque = (marque) => 
+export const createSpecification = (specification) => 
     axios.post(
-        REST_API_BASE_URL+"marque",
-        marque,
+        REST_API_BASE_URL+"specification",
+        specification,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const getMarque = (idMarque) => 
+export const getSpecification = (idSpecification) => 
     axios.get(
-        REST_API_BASE_URL+"marque/"+idMarque,
+        REST_API_BASE_URL+"specification/"+idSpecification,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 ) ;
 
-export const updateMarque = (Marque) => 
+export const updateSpecification = (specification) => 
     axios.put(
-        REST_API_BASE_URL+"marque",
-        Marque,
+        REST_API_BASE_URL+"specification",
+        specification,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const deleteMarque = (idMarque) => 
+export const deleteSpecification = (idSpecification) => 
     axios.delete(
-        REST_API_BASE_URL+"marque/"+idMarque,
+        REST_API_BASE_URL+"specification/"+idSpecification,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );

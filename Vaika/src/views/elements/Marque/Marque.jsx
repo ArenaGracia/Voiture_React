@@ -22,8 +22,12 @@ const [marques,setMarques] = useState([])
 function saveMarque(e){
     e.preventDefault();
     const marque={intitule}
-    createMarque(marque);
-}
+    createMarque(marque).then((response)=>{
+      setMarques([...marques,response.data]);
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 
 useEffect(() => {
     listMarques().then((response) => {
@@ -57,7 +61,7 @@ return (
                 onChange={handleIntitule}
                 />
             </FormGroup>
-            <Button onClick={saveMarque} color="primary">Valider</Button>
+            <Button onClick={saveMarque} style={{backgroundColor:'blue', borderColor:'blue'}}>Valider</Button>
             </Form>
         </CardBody>
         </Card>
@@ -81,8 +85,8 @@ return (
                                 </div>
                                 </div>
                             </td>
-                            <td><Link to={`/marque/edit/${Marque.idMarque}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
-                            <td><Link to={`/marque/delete/${Marque.idMarque}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
+                            <td><Link to={`/marque/edit/${marque.idMarque}`}><i class="bi bi-pencil-square me-2" style={{fontSize:25}}></i></Link></td>
+                            <td><Link to={`/marque/delete/${marque.idMarque}`}><i class="bi bi-trash me-2" style={{fontSize:25, color:'red'}}></i></Link></td>
                             </tr>
                         )
                     }

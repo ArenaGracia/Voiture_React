@@ -12,38 +12,38 @@ import {
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getCategorie, updateCategorie } from "../../../services/CategorieService";
+import { getComission, updateComission } from "../../../services/ComissionService";
 import { useParams } from "react-router-dom/dist";
 
-function EditCategorie(){
+function EditComission(){
   const { id } =useParams()
-  const [categorieDetails, setCategorieDetails] = useState({ idCategorie: '', intitule: '', etat:'' });
+  const [comissionDetails, setComissionDetails] = useState({ idComission: '', valeur: '', etat:'' });
   const [redirect, setRedirect] = useState(false);
   const [load, setLoad] = useState(false);
 
   useEffect(() => {
     if(!load){
-      getCategorie(id).then((response) => {
-        setCategorieDetails(response.data);
+      getComission(id).then((response) => {
+        setComissionDetails(response.data);
         setLoad(true);
         console.log(response.data);
-        console.log(categorieDetails);
+        console.log(comissionDetails);
       }).catch(error => {
         console.error(error);
       })
     }
   });
 
-  function modifCategorie(e){
+  function modifComission(e){
       e.preventDefault();
-      updateCategorie(categorieDetails);
+      updateComission(comissionDetails);
       setRedirect(true);
     }
 
-  function handleIntitule(e){
-      setCategorieDetails((prevDetails) => ({
+  function handleValeur(e){
+      setComissionDetails((prevDetails) => ({
         ...prevDetails,
-        intitule: e.target.value,
+        valeur: e.target.value,
       }));
   }
 
@@ -58,24 +58,24 @@ function EditCategorie(){
           <CardBody>
             <Form>
               <FormGroup>
-                <Label for="exampleEmail">Categorie</Label>
+                <Label for="exampleEmail">Comission</Label>
                 <Input
                   id="exampleEmail"
-                  name="Categorie"
-                  placeholder="Categorie"
+                  name="Comission"
+                  placeholder="Comission"
                   type="text"
-                  value={categorieDetails.intitule}
-                  onChange={handleIntitule}
+                  value={comissionDetails.valeur}
+                  onChange={handleValeur}
                 />
               </FormGroup>
-              <Button onClick={modifCategorie} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
+              <Button onClick={modifComission} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
             </Form>
           </CardBody>
         </Card>
       </Col>
-      { redirect && <Navigate to="/categorie" />}
+      { redirect && <Navigate to="/comission" />}
     </Row>
   );
 };
 
-export default EditCategorie;
+export default EditComission;

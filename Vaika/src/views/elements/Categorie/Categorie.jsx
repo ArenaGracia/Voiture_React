@@ -12,6 +12,7 @@ import {
     Table,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import "../../../assets/scss/style.scss";
 import { useState,useEffect } from "react";
 import { createCategorie, listCategories } from "../../../services/CategorieService";
 
@@ -22,12 +23,16 @@ const [categories,setCategories] = useState([])
 function saveCategorie(e){
     e.preventDefault();
     const categorie={intitule}
-    createCategorie(categorie);
+    createCategorie(categorie).then((response)=>{
+        setCategories([...categories,response.data]);
+    }).catch(error => {
+      console.log(error);
+    });
 }
 
 useEffect(() => {
     listCategories().then((response) => {
-    setCategories(response.data);
+        setCategories(response.data);
     }).catch(error => {
     console.error(error);
     })
@@ -57,7 +62,7 @@ return (
                 onChange={handleIntitule}
                 />
             </FormGroup>
-            <Button onClick={saveCategorie} color="primary">Valider</Button>
+            <Button onClick={saveCategorie} style={{backgroundColor:'blue', borderColor:'blue'}}>Valider</Button>
             </Form>
         </CardBody>
         </Card>

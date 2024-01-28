@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-const REST_API_BASE_URL = 'http://localhost:1970/api/project/';
+const REST_API_BASE_URL = 'https://voiture-production-524c.up.railway.app/api/voiture/';
 
-const login = (admin) => axios.post(REST_API_BASE_URL+"login",admin);
+const login = (vprofil) => axios.post(REST_API_BASE_URL+"login",vprofil);
 
-const logout = () => {
+const deconnect = () => {
   sessionStorage.removeItem('token');
+  sessionStorage.clear();
 };
 
 const getAuthToken = () => {
@@ -17,4 +18,4 @@ const isAuthenticated = () => {
   return token !== null;
 };
 
-export { login, logout, isAuthenticated };
+export { login, deconnect, isAuthenticated, getAuthToken };

@@ -8,34 +8,34 @@ console.log(token)
 
 
 
-export const listMarques = () =>  
+export const listModeTransmissions = () =>  
     axios.get(
-        REST_API_BASE_URL+"marques",
+        REST_API_BASE_URL+"modeTransmissions",
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const createMarque = (marque) => 
+export const createModeTransmission = (modeTransmission) => 
     axios.post(
-        REST_API_BASE_URL+"marque",
-        marque,
+        REST_API_BASE_URL+"modeTransmission",
+        modeTransmission,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const getMarque = (idMarque) => 
+export const getModeTransmission = (idModeTransmission) => 
     axios.get(
-        REST_API_BASE_URL+"marque/"+idMarque,
+        REST_API_BASE_URL+"modeTransmission/"+idModeTransmission,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 ) ;
 
-export const updateMarque = (Marque) => 
+export const updateModeTransmission = (ModeTransmission) => 
     axios.put(
-        REST_API_BASE_URL+"marque",
-        Marque,
+        REST_API_BASE_URL+"modeTransmission",
+        ModeTransmission,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );
 
-export const deleteMarque = (idMarque) => 
+export const deleteModeTransmission = (idModeTransmission) => 
     axios.delete(
-        REST_API_BASE_URL+"marque/"+idMarque,
+        REST_API_BASE_URL+"modeTransmission/"+idModeTransmission,
         { headers: { 'Authorization':  `Bearer ${token} ` } }
 );

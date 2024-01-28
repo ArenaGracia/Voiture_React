@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 const navigation = [
   {
     title: "Dashboard",
-    href: "/starter",
+    href: "/stat",
     icon: "bi bi-speedometer2",
   },
   {
@@ -18,6 +18,16 @@ const navigation = [
     href: "/table",
     icon: "bi bi-layout-split",
   },
+  {
+    title: "Comission",
+    href: "/comission",
+    icon: "bi bi-log-out",
+  },
+  {
+    title: "Deconnexion",
+    href: "/logout",
+    icon: "bi bi-log-out",
+  }
 ];
 
 const Sidebar = () => {

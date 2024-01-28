@@ -22,12 +22,17 @@ function Energie(){
   function saveEnergie(e){
     e.preventDefault();
     const energie={intitule}
-    createEnergie(energie);
+    createEnergie(energie).then((response)=>{
+      setEnergies([...energies,response.data]);
+    }).catch(error => {
+      console.log(error);
+    });
   }
 
   useEffect(() => {
     listEnergies().then((response) => {
       setEnergies(response.data);
+
     }).catch(error => {
       console.error(error);
     })
@@ -57,7 +62,7 @@ function Energie(){
                   onChange={handleIntitule}
                 />
               </FormGroup>
-              <Button onClick={saveEnergie} color="primary">Valider</Button>
+              <Button onClick={saveEnergie} style={{backgroundColor:'blue', borderColor:'blue'}}>Valider</Button>
             </Form>
           </CardBody>
         </Card>

@@ -12,36 +12,36 @@ import {
 } from "reactstrap";
 import { Navigate } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getEnergie, updateEnergie } from "../../../services/EnergieService";
+import { getSpecification, updateSpecification } from "../../../services/SpecificationService";
 import { useParams } from "react-router-dom/dist";
   
-function EditEnergie(){
+function EditSpecification(){
     const { id } =useParams();
     const [load, setLoad] = useState(false);
-    const [energyDetails, setEnergieDetails] = useState({ idEnergie: '', intitule: '', etat:'' });
+    const [SpecificationDetails, setSpecificationDetails] = useState({ idSpecification: '', intitule: '', etat:'' });
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
       if(!load){
-        getEnergie(id).then((response) => {
-          setEnergieDetails(response.data);
-          console.log(response.data);
-          console.log(energyDetails);
+        getSpecification(id).then((response) => {
+          setSpecificationDetails(response.data);
           setLoad(true);
+          console.log(response.data);
+          console.log(SpecificationDetails);
         }).catch(error => {
           console.error(error);
         })
       }
     });
 
-    function modifEnergie(e){
+    function modifSpecification(e){
         e.preventDefault();
-        updateEnergie(energyDetails);
+        updateSpecification(SpecificationDetails);
         setRedirect(true);
       }
   
     function handleIntitule(e){
-        setEnergieDetails((prevDetails) => ({
+        setSpecificationDetails((prevDetails) => ({
           ...prevDetails,
           intitule: e.target.value,
         }));
@@ -58,25 +58,25 @@ function EditEnergie(){
             <CardBody>
               <Form>
                 <FormGroup>
-                  <Label for="exampleEmail">Energie</Label>
+                  <Label for="exampleEmail">Specification</Label>
                   <Input
                     id="exampleEmail"
-                    name="energie"
-                    placeholder="Energie"
+                    name="Specification"
+                    placeholder="Specification"
                     type="text"
-                    value={energyDetails.intitule}
+                    value={SpecificationDetails.intitule}
                     onChange={handleIntitule}
                   />
                 </FormGroup>
-                <Button onClick={modifEnergie} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifier</Button>
+                <Button onClick={modifSpecification} style={{backgroundColor:'blue', borderColor:'blue'}}>Modifer</Button>
               </Form>
             </CardBody>
           </Card>
         </Col>
-        { redirect && <Navigate to="/energie" />}
+        { redirect && <Navigate to="/Specification" />}
       </Row>
     );
   };
   
-  export default EditEnergie;
+export default EditSpecification;
   
