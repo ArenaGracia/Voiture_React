@@ -41,7 +41,7 @@ const ThemeRoutes = [
     path: "/",
     element: <FullLayout />,
     children: [
-      { path: "/", element: <Navigate to="/Tables" /> },
+      { path: "/", element: <Navigate to="/table" /> },
       { path: "/login", exact: true, element: <Login /> },
       { path: "/logout", exact: true, element: <PrivateRoute><Logout /></PrivateRoute> },
       { path: "/annonce", exact: true, element: <PrivateRoute> <Annonce /></PrivateRoute> },

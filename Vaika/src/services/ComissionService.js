@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAuthToken } from "./AuthService";
 
-const REST_API_BASE_URL='http://localhost:1970/api/voiture/';
+const REST_API_BASE_URL='https://voiture-production-524c.up.railway.app/api/voiture/';
 
 let token=getAuthToken();
 console.log(token)
