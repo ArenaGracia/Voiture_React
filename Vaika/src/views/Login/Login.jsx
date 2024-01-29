@@ -54,7 +54,7 @@ function Login() {
                                         <input type="password" className="form-control" placeholder="Mot de passe" value={mdp} onChange={e => setMdp(e.target.value)} required />
                                     </div>
                                     <div className="form-group">
-                                        <Button onClick={authentifier} className="form-control" style={{backgroundColor:'#2962ff',color:'white'}}> Se Connecter</Button>
+                                        <Button onClick={authentifier} className="form-control" style={{backgroundColor:'#2962ff',borderColor:'blue',color:'white'}}> Se Connecter</Button>
                                     </div>
                                 </form>
                             </div>

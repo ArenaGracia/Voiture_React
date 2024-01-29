@@ -21,12 +21,12 @@ const navigation = [
   {
     title: "Comission",
     href: "/comission",
-    icon: "bi bi-log-out",
+    icon: "bi bi-layout-split",
   },
   {
     title: "Deconnexion",
     href: "/logout",
-    icon: "bi bi-log-out",
+    icon: "bi bi-card-text",
   }
 ];
 
