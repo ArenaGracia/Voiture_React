@@ -45,10 +45,8 @@ const SalesChart = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle tag="h5">Sales Summary</CardTitle>
-        <CardSubtitle className="text-muted" tag="h6">
-          Yearly Sales Report
-        </CardSubtitle>
+        <CardTitle tag="h5">Marque la plus vendue </CardTitle>
+        <br />
         <Chart
           type="area"
           width="100%"

@@ -17,6 +17,7 @@ import Couleur from "../views/elements/Couleur/Couleur";
 import Marque from "../views/elements/Marque/Marque";
 import ModeTransmission from "../views/elements/ModeTransmission/ModeTransmission";
 import Specification from "../views/elements/Specification/Specification";
+import Statistique from "../views/Statistique/Statistique";
 import Comission from "../views/elements/Comission/Comission";
 import EditEnergie from "../views/elements/Energie/EditEnergie";
 import EditCategorie from "../views/elements/Categorie/EditCategorie";
@@ -67,6 +68,7 @@ const ThemeRoutes = [
       { path: "/comission", exact: true, element: <PrivateRoute><Comission /></PrivateRoute> },
       { path: "/comission/edit/:id", exact: true, element: <PrivateRoute><EditComission /></PrivateRoute> },
       { path: "/comission/delete/:id", exact: true, element: <PrivateRoute><DeleteComission /></PrivateRoute> },
+      { path: "/stat", exact: true, element: <PrivateRoute><Statistique /></PrivateRoute> },
     ],
   },
 ];
