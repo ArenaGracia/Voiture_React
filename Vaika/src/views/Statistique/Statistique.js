@@ -1,5 +1,5 @@
 import { Card, CardBody, CardTitle, Col, Row } from "reactstrap";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts';
 import TopCards from "../../components/dashboard/TopCards";
 import { useEffect, useState } from "react";
 import { statElelemnt } from "../../services/StatistiquesService";
@@ -13,7 +13,7 @@ function Statistique (){
         setElement(response.data);
         const transformedData = response.data.marque.map(item => ({
           name: item.intitule,
-          uv: item.nbVente
+          Nombre: item.nbVente
         }));
         setData(transformedData);
     }).catch(error => {
@@ -87,14 +87,17 @@ function Statistique (){
           <CardBody>
             <CardTitle tag="h5">Marque la plus vendue</CardTitle>
             <br />
-            <BarChart width={500} height={300} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="uv" fill="#8884d8" />
-            </BarChart>
+            <ResponsiveContainer width="100%" height={500}>
+              <BarChart data={data}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="Nombre" fill="blue" />
+              </BarChart>
+              </ResponsiveContainer>
+
           </CardBody>
         </Card>
         </Col>

@@ -15,7 +15,7 @@ function AnnonceValider(){
     function validerAnnonce(e,annonceId){
       e.preventDefault();
       valider(annonceId);
-      // window.location.reload();
+      window.location.reload();
     }
 
     useEffect(() => {
