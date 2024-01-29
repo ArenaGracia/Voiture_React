@@ -5,8 +5,8 @@ import { isAuthenticated, login } from '../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [mdp,setMdp]=useState('motdepasse');
-    const [username,setUsername]=useState('john_doe');
+    const [mdp,setMdp]=useState('arena');
+    const [username,setUsername]=useState('arena');
     const [redirect,setRedirect]=useState(false);
     const nav=useNavigate();
 
